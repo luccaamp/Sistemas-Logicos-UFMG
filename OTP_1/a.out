@@ -1,0 +1,56 @@
+#! /usr/share/iverilog-0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_6)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1cc6770 .scope module, "testeOneTimePad" "testeOneTimePad" 2 3;
+ .timescale 0 0;
+v0x1cfc470_0 .var "mensagem", 31 0;
+v0x1cfc520_0 .net "resultadoCifrado", 31 0, L_0x1cfc670; 1 drivers
+v0x1cfc5f0_0 .net "resultadoDescifrado", 31 0, L_0x1cfc720; 1 drivers
+S_0x1cfc170 .scope module, "cifrador" "OneTimePad" 2 9, 3 3, S_0x1cc6770;
+ .timescale 0 0;
+L_0x1cfc670 .functor XOR 32, v0x1cfc470_0, v0x1cfc260_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x1cfc260_0 .var "cifra", 31 0;
+v0x1cfc320_0 .net "mensagem", 31 0, v0x1cfc470_0; 1 drivers
+v0x1cfc3c0_0 .alias "mensagemCifrada", 31 0, v0x1cfc520_0;
+S_0x1cc7a10 .scope module, "descifrador" "OneTimePad" 2 12, 3 3, S_0x1cc6770;
+ .timescale 0 0;
+L_0x1cfc720 .functor XOR 32, L_0x1cfc670, v0x1cec070_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x1cec070_0 .var "cifra", 31 0;
+v0x1cfc030_0 .alias "mensagem", 31 0, v0x1cfc520_0;
+v0x1cfc0d0_0 .alias "mensagemCifrada", 31 0, v0x1cfc5f0_0;
+    .scope S_0x1cfc170;
+T_0 ;
+    %movi 8, 1581461372, 32;
+    %set/v v0x1cfc260_0, 8, 32;
+    %end;
+    .thread T_0;
+    .scope S_0x1cc7a10;
+T_1 ;
+    %movi 8, 1581461372, 32;
+    %set/v v0x1cec070_0, 8, 32;
+    %end;
+    .thread T_1;
+    .scope S_0x1cc6770;
+T_2 ;
+    %movi 8, 1718577007, 32;
+    %set/v v0x1cfc470_0, 8, 32;
+    %end;
+    .thread T_2;
+    .scope S_0x1cc6770;
+T_3 ;
+    %vpi_call 2 16 "$display", "mensagem original:   %b (%0s)", v0x1cfc470_0, v0x1cfc470_0;
+    %delay 1, 0;
+    %vpi_call 2 19 "$display", "mensagem cifrada:    %b (%0s)", v0x1cfc520_0, v0x1cfc520_0;
+    %vpi_call 2 20 "$display", "mensagem descifrada: %b (%0s)", v0x1cfc5f0_0, v0x1cfc5f0_0;
+    %vpi_call 2 21 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";

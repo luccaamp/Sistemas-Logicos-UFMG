@@ -1,0 +1,95 @@
+#! /usr/share/iverilog-0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_6)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0xbe2710 .scope module, "xorgate_tb" "xorgate_tb" 2 2;
+ .timescale 0 0;
+v0xbf92e0_0 .var "A", 0 0;
+v0xbf9380_0 .var "B", 0 0;
+v0xbf9430_0 .net "Y", 0 0, L_0xbf97d0; 1 drivers
+S_0xbe2800 .scope module, "xorg" "xor_gate" 2 6, 3 2, S_0xbe2710;
+ .timescale 0 0;
+L_0xbf94e0 .functor NOT 1, v0xbf92e0_0, C4<0>, C4<0>, C4<0>;
+L_0xbf95c0 .functor NOT 1, v0xbf9380_0, C4<0>, C4<0>, C4<0>;
+L_0xbf9670 .functor AND 1, v0xbf92e0_0, L_0xbf95c0, C4<1>, C4<1>;
+L_0xbf9720 .functor AND 1, v0xbf9380_0, L_0xbf94e0, C4<1>, C4<1>;
+L_0xbf97d0 .functor OR 1, L_0xbf9670, L_0xbf9720, C4<0>, C4<0>;
+v0xbd2580_0 .net "a", 0 0, v0xbf92e0_0; 1 drivers
+v0xbf8ed0_0 .net "abar", 0 0, L_0xbf94e0; 1 drivers
+v0xbf8f70_0 .net "b", 0 0, v0xbf9380_0; 1 drivers
+v0xbf9010_0 .net "bbar", 0 0, L_0xbf95c0; 1 drivers
+v0xbf90c0_0 .net "t1", 0 0, L_0xbf9670; 1 drivers
+v0xbf9160_0 .net "t2", 0 0, L_0xbf9720; 1 drivers
+v0xbf9240_0 .alias "y", 0 0, v0xbf9430_0;
+    .scope S_0xbe2710;
+T_0 ;
+    %vpi_call 2 10 "$dumpfile", "dump.vcd";
+    %vpi_call 2 11 "$dumpvars", 2'sb01;
+    %end;
+    .thread T_0;
+    .scope S_0xbe2710;
+T_1 ;
+    %vpi_call 2 16 "$display", "\011\011Tempo, A, B, output= Y";
+    %vpi_call 2 17 "$monitor", $time, "  ", v0xbf92e0_0, v0xbf9380_0, " output= ", v0xbf9430_0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 3, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 2, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 2, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 2, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 1, 1;
+    %set/v v0xbf9380_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0xbf92e0_0, 0, 1;
+    %set/v v0xbf9380_0, 1, 1;
+    %delay 5, 0;
+    %vpi_call 2 93 "$display", "fim";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";
